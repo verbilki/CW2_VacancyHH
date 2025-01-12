@@ -69,11 +69,16 @@ poetry install
 ```bash
 poetry add requests
 poetry add python-dotenv
+mypy --install-types
 ```
 
 ### Функционал приложения
 
-TODO
+Созданы следующие классы в парадигме ООП с соблюдением двух первых принципов SOLID:
+- класс HH_API (для работы с API портала hh.ru на основе абстрактного класса HH_API_Parser;
+- ,
+- ,
+- .
 
 ### Запуск приложения
 
