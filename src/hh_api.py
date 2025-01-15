@@ -2,10 +2,10 @@ from typing import List, Optional
 
 import requests
 
-from src.base_api import API_Parser
+from src.base_api import ParserAPI
 
 
-class HH_API(API_Parser):
+class HeadhunterAPI(ParserAPI):
     """
     Класс для работы с API HeadHunter (api.hh.ru)
     """
@@ -60,3 +60,12 @@ class HH_API(API_Parser):
                 vacancies = response.json().get("items", [])
                 all_vacancies.extend(vacancies)
         return all_vacancies
+
+
+if __name__ == "__main__":
+    api = HeadhunterAPI()
+    keyword = input("Введите ключевое слово для поиска вакансий: ")
+    pages = int(input("Введите количество страниц для поиска: "))
+    per_page = int(input("Введите количество вакансий на странице: "))
+    vacancies = api.get_vacancies(keyword, pages, per_page)
+    print(vacancies)
