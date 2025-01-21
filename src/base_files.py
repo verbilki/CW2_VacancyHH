@@ -12,5 +12,5 @@ class Files(ABC):
         pass
 
     @abstractmethod
-    def delete_vacancy(self, del_number: str) -> List | None:
+    def delete_vacancy(self, vacancy_id: str) -> List | None:
         pass

@@ -17,7 +17,7 @@ class Vacancy:
         return (
             f"Номер: {self.vacancy_id}. Название: {self.name}. "
             f"Зарплата: {self.salary}. Ссылка на вакансию: {self.url}. "
-            f"Описание: {self.description.replace('\u2060', '')}"
+            f"Описание: {self.description}"
         )
 
     @staticmethod
@@ -34,18 +34,61 @@ class Vacancy:
 
     @staticmethod
     def __validate_url(url: str) -> str:
+        """
+        Validates the URL of the vacancy.
+
+        This method checks if the provided URL is a string and ensures it starts
+        with 'http'. If the URL is invalid, it raises a ValueError.
+
+        Args:
+        url (str): The URL to be validated.
+
+        Returns:
+        str: A valid URL that starts with 'http'.
+
+        Raises:
+        ValueError: If the URL is not a string or does not start with 'http'.
+        """
         if not isinstance(url, str) or not url.startswith("http"):
             raise ValueError("Invalid URL")
         return url
 
     @staticmethod
     def __validate_description(description: str) -> str:
+        """
+        Validates and truncates the vacancy description.
+
+        This method ensures that the description is a string and truncates
+        it to 1000 characters if necessary. If the description is not a
+        string, it raises a ValueError.
+
+        Args:
+        description (str): The description of the vacancy.
+
+        Returns:
+        str: A valid description, truncated to 1000 characters if needed.
+
+        Raises:
+        ValueError: If the description is not a string.
+        """
         if not isinstance(description, str):
             raise ValueError("Недопустимое описание вакансии")
-        return description[:1000]
+        return description[:1000].replace("\u2060", "")
 
     @staticmethod
     def __validate_salary(salary: int) -> int:
+        """
+        Checks and normalizes the salary value.
+
+        If the salary is None, sets it to 0.
+        If the salary is not a number or is negative, raises ValueError with message "Invalid salary_min".
+
+        Parameters:
+        salary (int): The salary value to be validated and normalized.
+
+        Returns:
+        int: The validated and normalized salary value.
+        """
         if salary is None:
             return 0
         elif not (isinstance(salary, int) or isinstance(salary, float)) or salary < 0:
@@ -54,6 +97,19 @@ class Vacancy:
 
     @staticmethod
     def salary_data(vacancy: Dict) -> Any:
+        """
+        The function is used to calculate the average salary of a vacancy.
+
+        If the salary is not specified, the function returns 0.
+        If the salary has only one value, the function returns this value.
+        If the salary has two values, the function returns the average of the two values.
+
+        Args:
+            vacancy (Dict): A dictionary containing information about a vacancy.
+
+        Returns:
+            Any: The calculated average salary of a vacancy.
+        """
         if vacancy["salary"] is None:
             return 0
         elif vacancy["salary"]["from"] and vacancy["salary"]["to"] is None:
@@ -64,7 +120,7 @@ class Vacancy:
             return (vacancy["salary"]["to"] + vacancy["salary"]["from"]) / 2
 
     @classmethod
-    def cast_to_object_list(cls, hh_vacancies: List) -> List:
+    def cast_to_object_list(cls, hh_vacancies: List) -> List["Vacancy"]:
         """
         Casts a list of dictionaries to a list of Vacancy objects.
 
@@ -85,16 +141,38 @@ class Vacancy:
         vacancy_objects = []
         for vacancy in hh_vacancies:
             try:
-                salary = cls.salary_data(vacancy)
+                if "description" in vacancy:
+                    vacancy = cls(
+                        vacancy_id=vacancy.get("id"),
+                        name=vacancy.get("name"),
+                        url=vacancy.get("url"),
+                        description=vacancy.get("description"),
+                        salary=vacancy.get("salary"),
+                    )
 
-                vacancy = cls(
-                    vacancy_id=vacancy.get("id"),
-                    name=vacancy.get("name"),
-                    url=vacancy.get("alternate_url"),
-                    description=vacancy.get("snippet", {}).get("requirement", ""),
-                    salary=round(salary),
-                )
+                else:
+                    salary = cls.salary_data(vacancy)
+                    description = (
+                        vacancy.get("snippet", {}).get("responsibility", "")
+                        if vacancy.get("snippet", {}).get("requirement") is None
+                        else vacancy.get("snippet", {}).get("requirement")
+                    )
+
+                    if description is None:
+                        raise ValueError(
+                            f"Вакансия {vacancy} не имеет описания "
+                            f"(в поле snippet.requirement или snippet.responsibility)."
+                        )
+                    vacancy = cls(
+                        vacancy_id=vacancy.get("id"),
+                        name=vacancy.get("name"),
+                        url=vacancy.get("alternate_url"),
+                        description=description,
+                        salary=round(salary),
+                    )
+
                 vacancy_objects.append(vacancy)
+
             except ValueError as e:
                 print(f"Skipping invalid vacancy: {e}")
         return vacancy_objects

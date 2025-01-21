@@ -1,3 +1,4 @@
+import re
 from typing import List, Optional
 
 import requests
@@ -32,13 +33,16 @@ class HeadhunterAPI(ParserAPI):
         self.__params["text"] = keyword
         self.__params["page"] = pages
         self.__params["per_page"] = per_page
+        response = None
 
         try:
             response = requests.get(self.__url, headers=self.__headers, params=self.__params)
             response.raise_for_status()
-            return response
+
         except requests.exceptions.RequestException as e:
             print(f"Возникла непредвиденная ошибка - {e}")
+        finally:
+            return response
 
     def get_vacancies(self, keyword: str, pages: int, per_page: int) -> List:
         """
@@ -57,9 +61,37 @@ class HeadhunterAPI(ParserAPI):
         for page in range(pages):
             response = self._get_response(keyword, page, per_page)
             if response:
-                vacancies = response.json().get("items", [])
+                try:
+                    vacancies = response.json().get("items", [])
+                except ValueError as e:
+                    print(f"Error parsing JSON response: {e}")
+                    continue
+
+                for vacancy in vacancies:
+                    for field in ["snippet"]:
+                        if (
+                            field in vacancy and isinstance(vacancy[field], dict) and "requirement" in vacancy[field]
+                        ) and isinstance(vacancy[field]["requirement"], str):
+                            vacancy[field]["requirement"] = self.remove_highlight_tags(vacancy[field]["requirement"])
+
                 all_vacancies.extend(vacancies)
+            else:
+                print(f"No response received for page {page}")
+
         return all_vacancies
+
+    @staticmethod
+    def remove_highlight_tags(text: str) -> str:
+        """
+        Removes HTML tags from the specified text that highlight search query words in the text.
+
+        Parameters:
+        text (str): The text to remove HTML tags from.
+
+        Returns:
+        str: The text with the HTML tags removed.
+        """
+        return re.sub(r"<highlighttext>|</highlighttext>", "", text)
 
 
 if __name__ == "__main__":
