@@ -17,15 +17,15 @@ def get_query_params() -> tuple[str, int, int]:
     if not user_query:
         user_query = "Python"
 
-    per_page_input = input("Введите количество вакансий на странице(максимум = 100, Enter = 10): ").strip()
-    per_page = int(per_page_input) if per_page_input.isnumeric() and 1 <= int(per_page_input) <= 100 else 10
-    pages_input = input("Количество страниц (не более 10: Enter = 1): ").strip()
-    pages = int(pages_input) if pages_input.isnumeric() and 1 <= int(pages_input) <= 10 else 1
+    per_page_input = input("Введите количество вакансий на странице(максимум = 40, Enter = 10): ").strip()
+    per_page = int(per_page_input) if per_page_input.isnumeric() and 1 <= int(per_page_input) <= 40 else 10
+    pages_input = input("Количество страниц (не более 10: Enter = 3): ").strip()
+    pages = int(pages_input) if pages_input.isnumeric() and 1 <= int(pages_input) <= 10 else 3
 
     return user_query, pages, per_page
 
 
-def get_top_vacancies(vacancies: list):
+def get_top_vacancies(vacancies: list) -> list:
     """
     Get the top N vacancies filtered by keywords and salary.
 
@@ -33,7 +33,7 @@ def get_top_vacancies(vacancies: list):
     vacancies (list[Vacancy]): The list of vacancies to filter.
 
     Returns:
-    None
+    list[Vacancy]: The list of top N vacancies.
 
     The function prompts the user to enter keywords and the lower limit of the salary.
     It then filters the vacancies by keywords and salary, sorts the filtered vacancies
@@ -65,12 +65,41 @@ def get_top_vacancies(vacancies: list):
 
     if not filtered_by_keywords:
         print("Нет подходящих вакансий. Попробуйте изменить параметры поиска.")
-        return
+        return vacancies
 
     if top_n > len(filtered_by_keywords) or top_n == 0:
         top_n = len(filtered_by_keywords)
     print(f"Top-{top_n} вакансий (отсортированных по убыванию зарплат):")
-    print_vacancies(sorted(filtered_by_keywords, key=lambda x: x.salary, reverse=True)[:top_n])
+    result_list = sorted(filtered_by_keywords, key=lambda x: x.salary, reverse=True)[:top_n]
+    print_vacancies(result_list)
+    return result_list
+
+
+def delete_vacancy_by_id(vacancies: list) -> None:
+    """
+    Delete a vacancy from a list of vacancies by its ID.
+
+    Parameters:
+    vacancies (list): A list of Vacancy objects.
+
+    Returns: None.
+    """
+    id_input = input("Введите номер вакансии для удаления: ").strip()
+    if not id_input.isnumeric():
+        print("Некорректный ввод. ID вакансии должен быть числом.")
+        return
+
+    is_found = False
+
+    for vacancy in vacancies:
+        if vacancy.vacancy_id == id_input:
+            vacancies.remove(vacancy)
+            print(f"Удалена следующая вакансия:\n {vacancy}")
+            is_found = True
+            break
+
+    if not is_found:
+        print(f"Вакансия с номером {id_input} не найдена.")
 
 
 def print_vacancies(vacancies: list) -> None:

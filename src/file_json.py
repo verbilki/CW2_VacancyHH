@@ -6,7 +6,7 @@ from src.base_files import Files
 
 
 class JSONFunc(Files):
-    def __init__(self, file_path: str = "data/vacancies.json") -> None:
+    def __init__(self, file_path: str) -> None:
         self.__file_path = file_path
 
     def get_data(self) -> Any:
@@ -86,5 +86,4 @@ class JSONFunc(Files):
                 existing_vacancies.pop(index)
                 with open(self.__file_path, "w", encoding="utf-8") as file:
                     json.dump(existing_vacancies, file, ensure_ascii=False, indent=4)
-
                 break

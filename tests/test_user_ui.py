@@ -15,7 +15,7 @@ def test_get_query_params_with_defaults():
     """
     with patch("builtins.input", side_effect=["", "", ""]):
         result = get_query_params()
-        assert result == ("Python", 1, 10)
+        assert result == ("Python", 3, 10)
 
 
 def test_get_query_params_with_non_numeric_inputs():
@@ -28,16 +28,23 @@ def test_get_query_params_with_non_numeric_inputs():
     """
     with patch("builtins.input", side_effect=["Java", "abc", "xyz"]):
         result = get_query_params()
-        assert result == ("Java", 1, 10)
+        assert result == ("Java", 3, 10)
 
 
 def test_get_query_params_with_max_pages():
-    with patch("builtins.input", side_effect=["C++", "100", "5"]):
+    """
+    Test that get_query_params handles the maximum number of pages correctly.
+
+    This test uses patch to simulate user inputs of "C++" for the keyword, 40 for the number of pages,
+    and 5 for the items per page. It asserts that the function returns the correct values:
+    'C++' for the keyword, 5 for the number of pages, and 40 for the items per page.
+    """
+    with patch("builtins.input", side_effect=["C++", "40", "5"]):
         result = get_query_params()
-        assert result == ("C++", 5, 100)
+        assert result == ("C++", 5, 40)
 
 
-def test_get_query_params_with_per_page_greater_than_100():
+def test_get_query_params_with_per_page_greater_than_40():
     """
     Test that get_query_params handles per_page values greater than 100.
 
