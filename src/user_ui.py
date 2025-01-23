@@ -1,3 +1,49 @@
+import os
+
+from dotenv import load_dotenv
+
+from src.file_json import JSONFunc
+from src.vacancy import Vacancy
+
+prj_root = os.path.dirname(os.path.dirname(__file__))
+
+
+def initial_load() -> tuple[str, list]:
+    """
+    Load vacancies from a JSON file and return the file path and list of vacancies.
+
+    This function prompts the user to input a file path for loading vacancies.
+    If no input is provided, it defaults to the file path specified in the environment variables.
+    It attempts to load vacancies from the specified JSON file, converts them into Vacancy objects,
+    and prints the loaded vacancies. If the file is not found, it returns an empty list of vacancies.
+
+    Returns:
+    tuple: A tuple containing the file path (str) and a list of Vacancy objects (list).
+    """
+    print("Добро пожаловать в приложение 'Vacancy APP' по работе с вакансиями HeadHunter!")
+    load_dotenv()
+
+    file_path_input = input(
+        f"Введите путь к JSON-файлу от корня приложения для загрузки вакансий "
+        f"(Enter = '{os.getenv('FILEPATH')}.json'): "
+    ).strip()
+
+    if file_path_input:
+        vacancies_file_path = os.path.join(prj_root, file_path_input)
+    else:
+        vacancies_file_path = os.path.join(prj_root, os.getenv("FILEPATH", "data/vacancies"), ".json")
+
+    if os.path.exists(vacancies_file_path):
+        vacancies_loaded = Vacancy.cast_to_object_list(JSONFunc(vacancies_file_path).get_data())
+        print_vacancies(vacancies_loaded)
+        print(f"Загружено {len(vacancies_loaded)} вакансии(й) из файла {vacancies_file_path.replace(prj_root, '')}.")
+    else:
+        vacancies_loaded = []
+        print(f"Файл {vacancies_file_path.replace(prj_root, '')} не найден. Выберите в меню пункт 1.")
+
+    return vacancies_file_path, vacancies_loaded
+
+
 def get_query_params() -> tuple[str, int, int]:
     """
     Get query parameters from the user.

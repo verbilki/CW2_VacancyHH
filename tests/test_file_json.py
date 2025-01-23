@@ -73,7 +73,7 @@ def test_get_data_returns_list_when_file_contains_valid_json():
     # Patch the open function in the JSONFunc module
     with mock.patch("builtins.open", mock_open), mock.patch("os.path.exists", return_value=True):
         load_dotenv()
-        json_func = JSONFunc(os.getenv("FILEPATH") + ".json")
+        json_func = JSONFunc(os.path.join(os.getenv("FILEPATH", ""), ".json"))
 
         # Call the method
         result = json_func.get_data()

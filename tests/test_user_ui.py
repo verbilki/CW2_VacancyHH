@@ -2,7 +2,8 @@ from unittest.mock import patch
 
 import pytest
 
-from src.user_ui import get_query_params, get_top_vacancies, print_vacancies
+from src.user_ui import get_query_params, get_top_vacancies, initial_load, print_vacancies
+from src.vacancy import Vacancy
 
 
 def test_get_query_params_with_defaults():
@@ -373,3 +374,66 @@ def test_get_top_vacancies_with_multiple_keywords(capsys: pytest.CaptureFixture)
         "3. Python Developer with salary 70000\n"
     )
     assert captured.out == expected_output, "Expected vacancies filtered by multiple keywords to be printed correctly"
+
+
+@patch("os.getenv", return_value="valid_file_path")
+@patch("builtins.input", return_value="valid_file_path")
+@patch("os.path.exists", return_value=True)
+@patch("src.file_json.JSONFunc.get_data")
+@patch("src.vacancy.Vacancy.cast_to_object_list")
+@patch("src.user_ui.print_vacancies")
+def test_initial_load_with_valid_file_path(
+    mock_print_vacancies, mock_cast_to_object_list, mock_get_data, mock_path_exists, mock_input, mock_getenv
+):
+    """
+    Test that initial_load correctly loads vacancies when a valid file path is provided.
+
+    This test uses patch to simulate a valid file path input and checks if the function
+    loads the vacancies correctly from the JSON file.
+    """
+    # Mock the JSONFunc to return a list of dictionaries representing vacancies
+    mock_vacancies_data = [
+        {
+            "vacancy_id": "100",
+            "name": "Developer A",
+            "url": "http://example.com/100",
+            "description": "Python Developer",
+            "salary": 70000,
+        },
+        {
+            "vacancy_id": "200",
+            "name": "Developer B",
+            "url": "http://example.com/200",
+            "description": "Java Developer",
+            "salary": 80000,
+        },
+    ]
+    mock_get_data.return_value = mock_vacancies_data
+
+    # Mock the Vacancy.cast_to_object_list to convert dictionaries to Vacancy objects
+    mock_vacancies_objects = [
+        Vacancy(
+            vacancy_id="100",
+            name="Developer A",
+            url="http://example.com/100",
+            description="Python Developer",
+            salary=70000,
+        ),
+        Vacancy(
+            vacancy_id="200",
+            name="Developer B",
+            url="http://example.com/200",
+            description="Java Developer",
+            salary=80000,
+        ),
+    ]
+    mock_cast_to_object_list.return_value = mock_vacancies_objects
+
+    # Call the function under test
+    file_path, vacancies = initial_load()
+
+    # Assert that the file path is correctly returned
+    assert file_path.endswith("valid_file_path")
+
+    # Assert that the vacancies are loaded correctly
+    assert vacancies == mock_vacancies_objects

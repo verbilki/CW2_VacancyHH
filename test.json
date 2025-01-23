@@ -1,0 +1,23 @@
+[
+    {
+        "id": "200",
+        "name": "Data Scientist",
+        "url": "https://promo2.com",
+        "description": "Data Scientist with machine learning skills",
+        "salary": 120000
+    },
+    {
+        "id": "300",
+        "name": "Frontend Developer",
+        "url": "https://promo3.com",
+        "description": "Frontend Developer with React knowledge",
+        "salary": 80000
+    },
+    {
+        "id": "400",
+        "name": "Java Developer",
+        "url": "https://promo4.com",
+        "description": "Java Developer with Spring framework",
+        "salary": 90000
+    }
+]
