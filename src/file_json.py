@@ -4,6 +4,8 @@ from typing import Any, List
 
 from src.base_files import Files
 
+prj_root = os.path.dirname(os.path.dirname(__file__))
+
 
 class JSONFunc(Files):
     def __init__(self, file_path: str) -> None:
@@ -50,7 +52,9 @@ class JSONFunc(Files):
         """
         existing_vacancies = self.get_data()
         existing_vacancies_dict = {vacancy["id"]: vacancy for vacancy in existing_vacancies}
+        added_vacancies_id = []
 
+        # Check for duplicates by IDAdd new vacancies
         for vacancy in vacancies:
             if vacancy.vacancy_id in existing_vacancies_dict:
                 continue
@@ -63,9 +67,17 @@ class JSONFunc(Files):
                     "salary": vacancy.salary,
                 }
             )
+            added_vacancies_id.append(vacancy.vacancy_id)
 
-        with open(self.__file_path, "w", encoding="utf-8") as f:
-            json.dump(existing_vacancies, f, ensure_ascii=False, indent=4)
+        if added_vacancies_id:
+            print(
+                f"В файл {self.__file_path.replace(prj_root, '')} "
+                f"добавлено {len(added_vacancies_id)} вакансии(й): {', '.join(added_vacancies_id)}"
+            )
+            with open(self.__file_path, "w", encoding="utf-8") as f:
+                json.dump(existing_vacancies, f, ensure_ascii=False, indent=4)
+        else:
+            print(f"В файл {self.__file_path.replace(prj_root, '')} нечего добавлять.")
 
     def delete_vacancy(self, vacancy_id: str) -> Any:
         """

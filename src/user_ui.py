@@ -31,7 +31,7 @@ def initial_load() -> tuple[str, list]:
     if file_path_input:
         vacancies_file_path = os.path.join(prj_root, file_path_input)
     else:
-        vacancies_file_path = os.path.join(prj_root, os.getenv("FILEPATH", "data/vacancies"), ".json")
+        vacancies_file_path = os.path.join(prj_root, (os.getenv("FILEPATH", "") + ".json"))
 
     if os.path.exists(vacancies_file_path):
         vacancies_loaded = Vacancy.cast_to_object_list(JSONFunc(vacancies_file_path).get_data())
@@ -98,14 +98,16 @@ def get_top_vacancies(vacancies: list) -> list:
     top_n = int(top_n_input) if top_n_input.isnumeric() else 0
 
     filtered_by_salary = [vacancy for vacancy in vacancies if vacancy.salary >= low_limit_salary]
-    filtered_by_keywords = []
 
     if keywords:
-        for vacancy in filtered_by_salary:
-            for keyword in keywords:
-                if keyword.lower() in vacancy.name.lower() or keyword.lower() in vacancy.description.lower():
-                    filtered_by_keywords.append(vacancy)
-                    break
+        filtered_by_keywords = [
+            vacancy
+            for vacancy in filtered_by_salary
+            if any(
+                keyword.lower() in vacancy.name.lower() or keyword.lower() in vacancy.description.lower()
+                for keyword in keywords
+            )
+        ]
     else:
         filtered_by_keywords = filtered_by_salary
 
@@ -119,6 +121,55 @@ def get_top_vacancies(vacancies: list) -> list:
     result_list = sorted(filtered_by_keywords, key=lambda x: x.salary, reverse=True)[:top_n]
     print_vacancies(result_list)
     return result_list
+
+
+def filter_vacancies_by_keywords(vacancies: list) -> list:
+    """
+    Filter a list of vacancies by keywords in the description.
+
+    Parameters:
+    vacancies (list): A list of Vacancy objects.
+
+    Returns:
+    list: A list of filtered Vacancy objects.
+    """
+    keywords = input("Введите слова для фильтрации вакансий по описанию: ").strip().split()
+    return [
+        vacancy for vacancy in vacancies if any(keyword.lower() in vacancy.description.lower() for keyword in keywords)
+    ]
+
+
+def save_vacancies_to_file(initial_file_path: str, vacancies: list) -> None:
+    """
+    Save a list of vacancies to a JSON file.
+
+    Parameters:
+    vacancies (list): A list of Vacancy objects.
+
+    Returns: None
+    """
+    if not vacancies:
+        print("Список вакансий пуст. Нечего сохранять.")
+        return
+
+    file_path_input = input(
+        f"Введите путь к JSON-файлу от корня приложения для сохранения последнего списка вакансий\n"
+        f"(Enter = перезаписать исходный файл {initial_file_path.replace(prj_root, '')}): "
+    ).strip()
+
+    if file_path_input:
+        if file_path_input == os.sep:
+            print("Некорректный ввод. Путь не может быть корневой директорией.")
+            return
+
+        elif file_path_input[:5] != ".json":
+            file_path_input = file_path_input + ".json"
+
+        if os.path.exists(file_path_input):
+            print(f"Файл {file_path_input.replace(prj_root, '')} уже существует. Добавляем в него.")
+        JSONFunc(file_path_input).add_vacancies(vacancies)
+    else:
+        JSONFunc(initial_file_path).add_vacancies(vacancies)
 
 
 def delete_vacancy_by_id(vacancies: list) -> None:

@@ -1,7 +1,9 @@
 from src.file_json import JSONFunc
 from src.hh_api import HeadhunterAPI
-from src.user_ui import (initial_load, get_query_params, get_top_vacancies, delete_vacancy_by_id, print_vacancies)
+from src.user_ui import (initial_load, get_query_params, get_top_vacancies, delete_vacancy_by_id, print_vacancies,
+                         filter_vacancies_by_keywords, save_vacancies_to_file)
 from src.vacancy import Vacancy
+
 
 def user_ui() -> None:
     vacancies_file_path, vacancies_processed = initial_load()
@@ -32,14 +34,14 @@ def user_ui() -> None:
         elif choice == "2":  # Отобрать Top N вакансий по набору слов и с ограничением по минимальной зарплате
             vacancies_processed = get_top_vacancies(vacancies_processed)
 
-        elif choice == "3":  # 3. Отобрать вакансии по ключевому(ым) слову(ам) в описании
-            pass
+        elif choice == "3":  # Отобрать вакансии по ключевому(ым) слову(ам) в описании
+            vacancies_processed = filter_vacancies_by_keywords(vacancies_processed)
 
-        elif choice == "4":  # 4. Удалить вакансию по номеру
+        elif choice == "4":  # Удалить вакансию по номеру
             delete_vacancy_by_id(vacancies_processed)
 
-        elif choice == "5":  # 5. Сохранить результат отбора в JSON-файл
-            JSONFunc(vacancies_file_path).add_vacancies(vacancies_processed)
+        elif choice == "5":  # Сохранить результат отбора в JSON-файл
+            save_vacancies_to_file(vacancies_file_path, vacancies_processed)
 
         elif choice == "6":
             print("Выход из приложения. До свидания !")
