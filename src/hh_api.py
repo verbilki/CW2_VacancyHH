@@ -1,11 +1,12 @@
+import re
 from typing import List, Optional
 
 import requests
 
-from src.base_api import API_Parser
+from src.base_api import ParserAPI
 
 
-class HH_API(API_Parser):
+class HeadhunterAPI(ParserAPI):
     """
     Класс для работы с API HeadHunter (api.hh.ru)
     """
@@ -32,13 +33,16 @@ class HH_API(API_Parser):
         self.__params["text"] = keyword
         self.__params["page"] = pages
         self.__params["per_page"] = per_page
+        response = None
 
         try:
             response = requests.get(self.__url, headers=self.__headers, params=self.__params)
             response.raise_for_status()
-            return response
+
         except requests.exceptions.RequestException as e:
             print(f"Возникла непредвиденная ошибка - {e}")
+        finally:
+            return response
 
     def get_vacancies(self, keyword: str, pages: int, per_page: int) -> List:
         """
@@ -57,6 +61,43 @@ class HH_API(API_Parser):
         for page in range(pages):
             response = self._get_response(keyword, page, per_page)
             if response:
-                vacancies = response.json().get("items", [])
+                try:
+                    vacancies = response.json().get("items", [])
+                except ValueError as e:
+                    print(f"Error parsing JSON response: {e}")
+                    continue
+
+                for vacancy in vacancies:
+                    for field in ["snippet"]:
+                        if (
+                            field in vacancy and isinstance(vacancy[field], dict) and "requirement" in vacancy[field]
+                        ) and isinstance(vacancy[field]["requirement"], str):
+                            vacancy[field]["requirement"] = self.remove_highlight_tags(vacancy[field]["requirement"])
+
                 all_vacancies.extend(vacancies)
+            else:
+                print(f"No response received for page {page}")
+
         return all_vacancies
+
+    @staticmethod
+    def remove_highlight_tags(text: str) -> str:
+        """
+        Removes HTML tags from the specified text that highlight search query words in the text.
+
+        Parameters:
+        text (str): The text to remove HTML tags from.
+
+        Returns:
+        str: The text with the HTML tags removed.
+        """
+        return re.sub(r"<highlighttext>|</highlighttext>", "", text)
+
+
+if __name__ == "__main__":
+    api = HeadhunterAPI()
+    keyword = input("Введите ключевое слово для поиска вакансий: ")
+    pages = int(input("Введите количество страниц для поиска: "))
+    per_page = int(input("Введите количество вакансий на странице: "))
+    vacancies = api.get_vacancies(keyword, pages, per_page)
+    print(vacancies)

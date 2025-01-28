@@ -1,0 +1,303 @@
+[
+    {
+        "id": "115941525",
+        "name": "Специалист по тестированию в VK Teams",
+        "url": "https://hh.ru/vacancy/115941525",
+        "description": "Умение подбирать подход, метод и инструменты, исходя из задачи. Будет плюсом: Опыт тестирования Backend. Опыт автоматизации на Python, TypeScript +...",
+        "salary": 0
+    },
+    {
+        "id": "115664033",
+        "name": "IT-специалист",
+        "url": "https://hh.ru/vacancy/115664033",
+        "description": "понимание принципов ведения регламентированного и управленческого учета. Преимущество для вас, если имеется опыт работы в Power BI и Python.",
+        "salary": 0
+    },
+    {
+        "id": "115917934",
+        "name": "Разработчик/Backend Developer (Python)",
+        "url": "https://hh.ru/vacancy/115917934",
+        "description": "Хорошее знание языка Python 3.10+. Уверенное владение экосистемой языка (pip, venv и пр.). Понимание принципов и тонкостей асинхронной...",
+        "salary": 0
+    },
+    {
+        "id": "115880264",
+        "name": "Junior Backend разработчик (Python)",
+        "url": "https://hh.ru/vacancy/115880264",
+        "description": "Опыт разработки на Python/Django (DRF) более одного года. Понимание языка программирования Python и опыт работы с фреймворками Django и...",
+        "salary": 350000
+    },
+    {
+        "id": "115914636",
+        "name": "Backend разработчик Python",
+        "url": "https://hh.ru/vacancy/115914636",
+        "description": "Техническое образование. Уверенное знание языка программирования Python. Знание фреймворков (Flask, Django). Умение работать с SQL запросами (PostgreSQL), в т.ч. ",
+        "salary": 100000
+    },
+    {
+        "id": "115940404",
+        "name": "Младший аналитик",
+        "url": "https://hh.ru/vacancy/115940404",
+        "description": "Владение SQL на уровне написания вложенных запросов (желательно ClickHouse), опыт обработки и анализа данных на Python (Pandas, NumPy). ",
+        "salary": 0
+    },
+    {
+        "id": "115862949",
+        "name": "Data Analyst",
+        "url": "https://hh.ru/vacancy/115862949",
+        "description": "Сильные и самостятельные навыки программирования на SQL и Python. Опыт работы с большими данными и сложными структурами данных из разных...",
+        "salary": 0
+    },
+    {
+        "id": "115907511",
+        "name": "CFO/Финансовый директор",
+        "url": "https://hh.ru/vacancy/115907511",
+        "description": "Высокий уровень владения excel. Есть базовые навыки SQL/Python. Отличное знание НК РФ. Хорошее понимание бухгалтерского учета и его специфики...",
+        "salary": 0
+    },
+    {
+        "id": "115914752",
+        "name": "Middle/Senior Manual QA Engineer (Desktop)",
+        "url": "https://hh.ru/vacancy/115914752",
+        "description": "Опыт тестирования настольных приложений. Продвинутые знания и навыки администрирования Windows и Linux. Опыт автоматизации тестирования или разработки на Python.",
+        "salary": 0
+    },
+    {
+        "id": "115266758",
+        "name": "Программист Python (FastApi, Django)",
+        "url": "https://hh.ru/vacancy/115266758",
+        "description": "Уверенное знание языка Python3. Опыт работы с Linux, GIT. Знания реляционных баз данных и SQL. Опыт работы с фреймворком...",
+        "salary": 0
+    },
+    {
+        "id": "115924142",
+        "name": "GO/Python Developer",
+        "url": "https://hh.ru/vacancy/115924142",
+        "description": "Python scripts, flask, requests, json api. Самостоятельность, Ответственность. Можно без опыта. Английский письменный.",
+        "salary": 0
+    },
+    {
+        "id": "110412718",
+        "name": "Junior Python Developer",
+        "url": "https://hh.ru/vacancy/110412718",
+        "description": "Базовые знания Python. Опыт написания REST приложений на любом Python фреймворке (Flask, FastAPI, Django и др.). Понимание основ SQL и...",
+        "salary": 75000
+    },
+    {
+        "id": "115748775",
+        "name": "Intern Data Analyst / Стажер - аналитик данных",
+        "url": "https://hh.ru/vacancy/115748775",
+        "description": "Previous experience with some of the following tools would be considered an advantage: scientific or statistical computing (Python, R), SQL...",
+        "salary": 100000
+    },
+    {
+        "id": "115923013",
+        "name": "Младший Аналитик (Junior Analyst)",
+        "url": "https://hh.ru/vacancy/115923013",
+        "description": "Ответственность и внимательность к деталям. Английский (Intermediate). Знание Python (Pandas) для анализа данных. Опыт работы с базами данных или аналитическими...",
+        "salary": 100000
+    },
+    {
+        "id": "115575681",
+        "name": "Стажер-разработчик",
+        "url": "https://hh.ru/vacancy/115575681",
+        "description": "Знание основных фреймворков (например, Spring будет плюсом). Базовые знания языка программирования Python. Опыт работы с основными библиотеками (например, Django, Flask...",
+        "salary": 0
+    },
+    {
+        "id": "115938365",
+        "name": "C# Developer",
+        "url": "https://hh.ru/vacancy/115938365",
+        "description": "University degree in computer science, mathematics, physics, or a related field. 2+ years of professional work experience as a...",
+        "salary": 0
+    },
+    {
+        "id": "115895018",
+        "name": "QA-инженер / Тестировщик программного обеспечения",
+        "url": "https://hh.ru/vacancy/115895018",
+        "description": "Базовые знания английского приветствуются. Прохождение специализированных курсов. Базовое представление об SQL. Знание скриптовых языков типа Python. Желание развиваться в области...",
+        "salary": 80000
+    },
+    {
+        "id": "114618889",
+        "name": "Web-программист - стажер",
+        "url": "https://hh.ru/vacancy/114618889",
+        "description": "Знать теорию тестирования, что такое тест планы, чек листы и протокол тестирования, свободно владеть ЯП Python, быть приспособленным к монотонной...",
+        "salary": 0
+    },
+    {
+        "id": "115900884",
+        "name": "Python-разработчик",
+        "url": "https://hh.ru/vacancy/115900884",
+        "description": "От 4 лет коммерческого опыта на Python. Высшее профильное образование. Будет плюсом опыт работы с fastapi, aiohttp, celery, sqlalchemy, SQL.",
+        "salary": 250000
+    },
+    {
+        "id": "115868398",
+        "name": "QA manual",
+        "url": "https://hh.ru/vacancy/115868398",
+        "description": "Высшее техническое образование. Опыт работы в тестировании от 3 лет. Знание методологии тестирования, понимание разных типов\\видов тестирования, опыт написания...",
+        "salary": 0
+    },
+    {
+        "id": "115683559",
+        "name": "Frontend developer",
+        "url": "https://hh.ru/vacancy/115683559",
+        "description": "Опыт настройки CI/CD. Опыт работы Linux. Опыт коммерческой разработки на PHP (Symfony, Laravel), Python. Опыт оптимизации и масштабирования приложений.",
+        "salary": 0
+    },
+    {
+        "id": "115820609",
+        "name": "Стажер Python-разработчик",
+        "url": "https://hh.ru/vacancy/115820609",
+        "description": "Опыт программирования. Знание Python. Опыт работы с FastAPI. Опыт работы с реляционными базами данных. Базовое представление о REST API. ",
+        "salary": 0
+    },
+    {
+        "id": "115917302",
+        "name": "Младший аналитик данных",
+        "url": "https://hh.ru/vacancy/115917302",
+        "description": "Опыт работы аналитиком данных до года. Знание Python (pandas, matplotlib, selenium). Знание SQL (DML, временные таблицы; процедуры, SQL agent - будет...",
+        "salary": 100000
+    },
+    {
+        "id": "115895826",
+        "name": "QA-инженер (инженер по тестированию ПО)",
+        "url": "https://hh.ru/vacancy/115895826",
+        "description": "Опыт работы с инструментами: Charles, Postman. Знание одного из языков программирования: Java, Python, C++. Опыт тестирования десктопных приложений в Linux.",
+        "salary": 0
+    },
+    {
+        "id": "115482788",
+        "name": "Стажер-разработчик",
+        "url": "https://hh.ru/vacancy/115482788",
+        "description": "Знание основ программирования. Знания любого языка программирования (JavaScript, PHP, Python, C#, Java, C, C++ и др). Писать код, понимать основные...",
+        "salary": 125000
+    },
+    {
+        "id": "110304416",
+        "name": "Junior Golang Developer",
+        "url": "https://hh.ru/vacancy/110304416",
+        "description": "CI/CD: Опыт работы с инструментами непрерывной интеграции и доставки. Другие языки: Знание других языков программирования, таких как Python или...",
+        "salary": 75000
+    },
+    {
+        "id": "115521350",
+        "name": "Python разработчик",
+        "url": "https://hh.ru/vacancy/115521350",
+        "description": "Знаешь операционные системы семейства Linux. - Имеешь опыт работы с framework: FastAPI/ Flask /Djang o (Сейча с FastAPI). - Понимаешь специфику тонких...",
+        "salary": 120000
+    },
+    {
+        "id": "115775759",
+        "name": "QA manual middle (web) / ручной тестировщик",
+        "url": "https://hh.ru/vacancy/115775759",
+        "description": "Тестирование API с помощью Swagger, Postman. Опыт работы с Gitlab. Опыт тестирования мобильных приложений. Опыт работы с Python и Selenium.",
+        "salary": 0
+    },
+    {
+        "id": "115896812",
+        "name": "Директор департамента аналитики",
+        "url": "https://hh.ru/vacancy/115896812",
+        "description": "Опыт по организации процесса управления данными в крупной или средней компании. Знание МS Office. Навыки работы с Python, sql, PosgreSQL...",
+        "salary": 0
+    },
+    {
+        "id": "115716292",
+        "name": "Заместитель начальника управления по цифровой трансформации",
+        "url": "https://hh.ru/vacancy/115716292",
+        "description": "Знание базовых принципов построения ИТ-инфраструктуры. Стаж работы по специальности в области информационных технологий не менее 5 лет с опытом...",
+        "salary": 343750
+    },
+    {
+        "id": "115919024",
+        "name": "Бэкенд-разработчик в Яндекс (Python/Java/Kotlin/C++/С#/Go)",
+        "url": "https://hh.ru/vacancy/115919024",
+        "description": "Опыт коммерческой разработки не менее пяти лет на одном из языков: Python, Java, Kotlin, C++, С#, Go.",
+        "salary": 0
+    },
+    {
+        "id": "116036243",
+        "name": "Junior разработчик",
+        "url": "https://hh.ru/vacancy/116036243",
+        "description": "Есть подтверждённые учебные или пет-проекты. Законченные курсы не менее полугода назад или наличие профильного образования.",
+        "salary": 90000
+    },
+    {
+        "id": "116033542",
+        "name": "Тестировщик",
+        "url": "https://hh.ru/vacancy/116033542",
+        "description": "Высшее или средне-техническое образование. Общее понимание методологии процесса тестирования, знание принципов всех современных методик + умение применять эти знания...",
+        "salary": 120000
+    },
+    {
+        "id": "116003116",
+        "name": "QA engineer",
+        "url": "https://hh.ru/vacancy/116003116",
+        "description": "Знание на уровне уверенного пользователя Windows и Linux. Знание Python, других скриптовых языков. Умение работать с системами логирования log4...",
+        "salary": 0
+    },
+    {
+        "id": "116033132",
+        "name": "Стажер",
+        "url": "https://hh.ru/vacancy/116033132",
+        "description": "...студент выпускных курсов бакалавриата или магистратуры технического или экономического направлений. Владеешь MS Excel (сводные таблицы, графики, функции). Владеешь SQL, Python.",
+        "salary": 0
+    },
+    {
+        "id": "116034730",
+        "name": "Стажер, Data Analyst / Data Scientist",
+        "url": "https://hh.ru/vacancy/116034730",
+        "description": "Хороший уровень Python (pandas, numpy) в части анализа и обработки данных. Понимание ООП. Хорошие знания алгоритмов, структур данных (рекурсия, деревья...",
+        "salary": 0
+    },
+    {
+        "id": "116042668",
+        "name": "Стажёр - Data Analyst, Подгруппа анализа данных",
+        "url": "https://hh.ru/vacancy/116042668",
+        "description": "Обладаешь базовым пониманием SQL. Разбираешься в базовой математической статистике. Готов быстро учиться и применять навыки на практике. Будет плюсом, если...",
+        "salary": 0
+    },
+    {
+        "id": "115961394",
+        "name": "ML-инженер ( Middle+ )",
+        "url": "https://hh.ru/vacancy/115961394",
+        "description": "Отличное знание архитектур для задач компьютерного зрения (YOLO, CNN, трансформеры и др.). Уверенное владение Python. Опыт работы с библиотеками для...",
+        "salary": 500000
+    },
+    {
+        "id": "116030019",
+        "name": "Python Developer / Backend-разработчик",
+        "url": "https://hh.ru/vacancy/116030019",
+        "description": "Владение стеком: Python, Djagno, PostgreSQL, PyTest. Уровень junior-middle (не менее года в коммерческих проектах). Понимание: GraphQL, Rabbitmq, Redis, Celery...",
+        "salary": 175000
+    },
+    {
+        "id": "115461312",
+        "name": "Senior/Middle+ Backend Developer",
+        "url": "https://hh.ru/vacancy/115461312",
+        "description": "Разрабатывали коммерческие приложения не менее 5 лет. Качественно тестируете свой код и свободно работаете с чужим. Разбираетесь в классических алгоритмах...",
+        "salary": 0
+    },
+    {
+        "id": "115172685",
+        "name": "Frontend-разработчик",
+        "url": "https://hh.ru/vacancy/115172685",
+        "description": "Знание Javascript и особенно React. Понимание REST-запросов. HTML/CSS. Знание Python (хоть какое-то). Опыт взаимодействия с MUI-фреймворком. ",
+        "salary": 200000
+    },
+    {
+        "id": "115935566",
+        "name": "Бэкенд разработчик (junior + / middle - ) не удаленно",
+        "url": "https://hh.ru/vacancy/115935566",
+        "description": "Опыт работы с Django - 2 года. Знание и опыт работы с Django, Python, PostgreSQL, Redis, Celery, Docker, Git.",
+        "salary": 700000
+    },
+    {
+        "id": "116014237",
+        "name": "Python Middle разработчик",
+        "url": "https://hh.ru/vacancy/116014237",
+        "description": "Уверенное знание Python. - Знание принципов ООП. - Умение писать SQL запросы. - Опыт использования Redis или Memcached. - Опыт ORM (Django или Tortoise). - ",
+        "salary": 140000
+    }
+]

@@ -4,7 +4,7 @@ from typing import List, Optional
 import requests
 
 
-class API_Parser(ABC):
+class ParserAPI(ABC):
     """Абстрактный класс для работы с API api.hh.ru"""
 
     @abstractmethod
